@@ -4,7 +4,6 @@ const fs = require('fs')
 const memoryFileName = 'memory-file.txt'
 
 function createMemoryFile() {
-  console.log('Memory file')
     fs.open(memoryFileName,'r',function(err, fd){
       if (err) {
         fs.writeFile(memoryFileName, '', function(err) {
@@ -17,7 +16,12 @@ function createMemoryFile() {
 }
 
 function setMemoryValue(memoryValue) {
-  fs.writeFileSync(memoryFileName, String(memoryValue));
+  try {
+    fs.writeFileSync(memoryFileName, String(memoryValue));
+    return 'ok'
+  } catch(err) {
+    return err
+  }
 }
 
 function getMemoryValue() {
@@ -25,8 +29,7 @@ function getMemoryValue() {
     const data = fs.readFileSync(memoryFileName, 'utf8')
     return data
   } catch (err) {
-    console.error(err)
-    return 'err'
+    return err
   }
 }
 
