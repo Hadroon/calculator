@@ -3,10 +3,11 @@
 #Installation
 
 NPM i
-client folder: npm i
+cd client : npm i
+cd server : npm i
 
 Start
-main folder: npm run start
+cd server: npm run start
 
 
 #Error handling
