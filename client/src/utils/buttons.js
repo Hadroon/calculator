@@ -2,158 +2,135 @@ const buttons = [
     {
         value: 'MR',
         sign: '',
-        handler: '',
-        cssClass: ''
+        handler: 'getMemory',
+        cssClass: ['blue-bg']
     },
     {
         value: 'MC',
         sign: '',
-        handler: '',
-        cssClass: ''
+        handler: 'clearMemory',
+        cssClass: ['blue-bg']
     },
     {
         value: 'M+',
         sign: '',
-        handler: '',
-        cssClass: ''
+        handler: 'addToMemory',
+        cssClass: ['blue-bg']
     },
     {
         value: 'M-',
         sign: '',
-        handler: '',
-        cssClass: ''
+        handler: 'subtractFromMemory',
+        cssClass: ['blue-bg']
     },
     {
         value: '7',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '8',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '9',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '/',
         sign: '÷',
         handler: 'doOperaion',
-        cssClass: ''
+        cssClass: ['light-blue-bg']
     },
     {
         value: '4',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '5',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '6',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '*',
         sign: '',
         handler: 'doOperaion',
-        cssClass: ''
+        cssClass: ['light-blue-bg']
     },
     {
         value: '1',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '2',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '3',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '-',
         sign: '',
         handler: 'doOperaion',
-        cssClass: ''
+        cssClass: ['light-blue-bg']
     },
     {
-        value: '00',
+        value: 'MEM',
         sign: '',
-        handler: 'handleValues',
-        cssClass: ''
+        handler: 'setMemory',
+        cssClass: ['blue-bg']
     },
     {
         value: '0',
         sign: '',
         handler: 'handleValues',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '.',
         sign: '',
         handler: 'handleDecimal',
-        cssClass: ''
+        cssClass: ['light-gray-bg']
     },
     {
         value: '+',
         sign: '',
         handler: 'doOperaion',
-        cssClass: ''
+        cssClass: ['light-blue-bg']
     },
     {
         value: 'C',
         sign: '',
         handler: 'doOperaion',
-        cssClass: ''
+        cssClass: ['orange-bg', 'clear-button']
     },
     {
         value: '=',
         sign: '',
         handler: 'doOperaion',
-        cssClass: ''
+        cssClass: ['equal-button', 'light-blue-bg']
     }
   ]
-// const buttons = [
-//     // 'MR',
-//     // 'M-',
-//     // 'M+',
-//     '7',
-//     '8',
-//     '9',
-//     // '÷',
-//     '4',
-//     '5',
-//     '6',
-//     // '*',
-//     '1',
-//     '2',
-//     '3',
-//     // '-',
-//     '00',
-//     '0',
-//     '.',
-//     // '+',
-//     // 'C',
-//     // '=',
-//   ]
 
 export default buttons

@@ -9,14 +9,10 @@
           v-for="button in buttons" :key="button.value"
           @click="handler(button.handler, button.value)"
           class="button"
+          :class="button.cssClass"
         >
           {{button.sign || button.value}}
         </div>
-      </div>
-    </div>
-    <div class="history">
-      <div v-for="line in history" :key="line">
-          {{line}}
       </div>
     </div>
   </div>
@@ -27,12 +23,6 @@ import buttons from '../utils/buttons'
 
 export default {
   name: 'calculator-comp',
-  // created() {
-  //   console.log('ziggi')
-  //   console.log(buttons)
-  // },
-  props: {
-  },
   data() {
     return {
       buttons,
@@ -41,7 +31,7 @@ export default {
       operation: '',
       newNumber: true,
       lastInput: '',
-      history: ['alma', 'csoki'],
+      memory: '',
     }
   },
   methods: {
@@ -79,62 +69,68 @@ export default {
       (value === '=') ? this.operation = '' : this.operation = value
       this.lastInput = 'operation'
     },
-    // handleDecimal(value) {
-      // console.log('222', this.lastInput, this.lastInput === 'operation', (this.numbersOnDisplay === '0' || this.lastInput === 'operation'))
-      // if (this.numbersOnDisplay.includes('.') && this.lastInput !== 'operation') return
-      // this.lastInput = 'number'
-      // if (this.numbersOnDisplay === '0' || this.lastInput === 'operation') {
-      //   this.numbersOnDisplay = '0.'
-      //   console.log('kjhkjhkjhkjh')
-      //   return
-      // }
-      // console.log('IDE NEEEEE')
-      // this.numbersOnDisplay += value
-    // },
-    doMemoryOperation() {
+    handleDecimal(value) {
+      if (this.numbersOnDisplay.includes('.') && this.lastInput !== 'operation') return
+      if (this.lastInput === 'operation') {
+        this.numbersOnDisplay = '0.'
+      } else {
+        this.numbersOnDisplay += value
+      }
+      this.newNumber = false
+      this.lastInput = 'number'
     },
     count() {
-      // console.log('count start', this.storedDisplayNumber + this.operation + this.numbersOnDisplay)
       const result = eval(this.storedDisplayNumber + this.operation + this.numbersOnDisplay)
       const resultStr = String(result)
       this.storedDisplayNumber = resultStr
       this.numbersOnDisplay = resultStr
     },
     reset() {
-      console.log('reset')
       this.operation = ''
       this.lastInput = ''
       this.storedDisplayNumber = '0'
       this.newNumber = true
       this.numbersOnDisplay = '0'
     },
-    // numbersToDisplay() {
-    //   // return this.numbersToDisplay || this.initialZeroOnDisplay
-    //   // return this.numbersToDisplay || this.initialZeroOnDisplay
-    //   console.log('hello')
-    //   if (this.numbersOnDisplay.length) return this.numbersOnDisplay
-    //   return this.initialZeroOnDisplay
-    // }
-  },
-  computed: {
+    async apiCall(url = '', method = 'GET', body) {
+      const response = await fetch(url, {
+        method,
+        mode: 'cors', 
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'text/html'
+        },
+        body
+      });
+      return response.json()
+    },
+    async getMemory() {
+      const url = '/get-memory'
+      const method = 'GET'
+      const result = await this.apiCall(url, method)
+      this.numbersOnDisplay = result
+    },
+    async setMemory() {
+      const url = '/set-memory'
+      const method = 'POST'
+      await this.apiCall(url, method, this.numbersOnDisplay)
+    },
+    async clearMemory() {
+      const url = '/clear-memory'
+      const method = 'GET'
+      await this.apiCall(url, method)
+    },
+    async addToMemory() {
+      const url = '/add-to-memory'
+      const method = 'POST'
+      await this.apiCall(url, method, this.numbersOnDisplay)
+    },
+    async subtractFromMemory() {
+      const url = '/subtract-from-memory'
+      const method = 'POST'
+      await this.apiCall(url, method, this.numbersOnDisplay)
+    },
   },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
